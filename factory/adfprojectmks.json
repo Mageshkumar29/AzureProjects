@@ -1,0 +1,15 @@
+{
+	"name": "adfprojectmks",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "76d9f631-a22c-4397-aaf6-9d56c38fe80e",
+		"tenantId": "0f3d4b18-95c1-40ca-a6cd-f294bad2d0eb"
+	}
+}
