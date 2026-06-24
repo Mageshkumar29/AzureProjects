@@ -1,0 +1,19 @@
+{
+	"name": "Json1_Transfer_Datalake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageTransfer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "First_excel_File",
+				"fileSystem": "destination"
+			}
+		},
+		"schema": {}
+	}
+}
