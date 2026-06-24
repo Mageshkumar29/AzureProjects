@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Github_to_Data_Lake",
+				"name": "Github_Transfer",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -22,26 +22,11 @@
 							"requestMethod": "GET"
 						}
 					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
-						}
-					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "Excel_Transfer_Git_Hub",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Json1_Transfer_Datalake",
 						"type": "DatasetReference"
 					}
 				]

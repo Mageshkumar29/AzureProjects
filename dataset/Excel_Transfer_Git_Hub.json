@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "Mageshkumar29/AzureProjects"
+				"relativeUrl": "Mageshkumar29/AzureProjects/blob/main/Test_File.xlsx"
 			}
 		},
 		"schema": []
