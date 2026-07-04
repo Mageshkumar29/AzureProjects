@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ADF_Sales_Practice_Data_Derived_Filters",
-				"folderPath": "derived",
+				"fileName": "ADF_Sales_Practice_Data_Aggregate",
+				"folderPath": "Aggregate",
 				"fileSystem": "dataflow"
 			},
 			"columnDelimiter": ",",
