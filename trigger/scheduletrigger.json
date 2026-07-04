@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Dataflow derived column",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
