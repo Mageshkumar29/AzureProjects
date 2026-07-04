@@ -1,0 +1,73 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SourceDS",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestinationDS",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn",
+					"description": "Deriving actual unit price"
+				},
+				{
+					"name": "select",
+					"description": "selecting needed columns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          OrderID as short,",
+				"          OrderDate as date,",
+				"          CustomerID as string,",
+				"          ProductID as string,",
+				"          ProductName as string,",
+				"          PaymentType as string,",
+				"          Quantity as short,",
+				"          UnitPrice as integer,",
+				"          TotalAmount as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source",
+				"source derive(ActualUnitPrice = UnitPrice - (UnitPrice * 0.07)) ~> derivedColumn",
+				"derivedColumn select(mapColumn(",
+				"          OrderID,",
+				"          OrderDate,",
+				"          CustomerID,",
+				"          ProductID,",
+				"          ProductName,",
+				"          UnitPrice,",
+				"          ActualUnitPrice",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select",
+				"select sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['ADF_Sales_Practice_Data_Derived'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink"
+			]
+		}
+	}
+}

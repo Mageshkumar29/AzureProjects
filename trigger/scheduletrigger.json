@@ -1,0 +1,26 @@
+{
+	"name": "scheduletrigger",
+	"properties": {
+		"description": "Dataflow derived column",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2026-07-02T22:32:00",
+				"endTime": "2026-07-03T22:30:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
