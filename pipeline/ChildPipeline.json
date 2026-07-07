@@ -1,6 +1,48 @@
 {
 	"name": "ChildPipeline",
 	"properties": {
+		"activities": [
+			{
+				"name": "Child_Wait",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			},
+			{
+				"name": "Set variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Child_Wait",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ReceivedFile",
+					"value": "@pipeline().parameters.FileName"
+				}
+			}
+		],
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"ReceivedFile": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
