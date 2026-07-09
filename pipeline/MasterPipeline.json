@@ -53,25 +53,50 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Execute Pipeline",
-							"type": "ExecutePipeline",
+							"name": "If Condition",
+							"type": "IfCondition",
 							"dependsOn": [],
-							"policy": {
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"pipeline": {
-									"referenceName": "ChildPipeline",
-									"type": "PipelineReference"
+								"expression": {
+									"value": "@equals(item().IsActive,'1')",
+									"type": "Expression"
 								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"FileName": {
-										"value": "@item().FileName",
-										"type": "Expression"
+								"ifFalseActivities": [
+									{
+										"name": "Wait",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 5
+										}
 									}
-								}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Execute Pipeline",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"policy": {
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "ChildPipeline",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"FileName": {
+													"value": "@item().FileName",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								]
 							}
 						}
 					]
