@@ -1,0 +1,90 @@
+{
+	"name": "UntilPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Until",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('Counter'),2)",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Wait",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 5
+							}
+						},
+						{
+							"name": "Set variable",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Wait",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Temp",
+								"value": {
+									"value": "@add(variables('Counter'),1)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set variable",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Counter",
+								"value": {
+									"value": "@variables('Temp')",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			}
+		],
+		"variables": {
+			"Counter": {
+				"type": "Integer",
+				"defaultValue": 0
+			},
+			"Temp": {
+				"type": "Integer",
+				"defaultValue": 0
+			}
+		},
+		"annotations": []
+	}
+}
