@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfprojectmks"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStoragetransfer_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://storageaccadfmks.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStoragetransfer_properties_typeProperties_url": {
+			"value": "https://storageaccadfmks.dfs.core.windows.net/"
+		},
+		"GithubLink_properties_typeProperties_url": {
+			"value": "https://github.com"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
