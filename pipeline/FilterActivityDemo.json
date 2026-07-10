@@ -101,7 +101,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "AppendVariable",
+								"variableName": "ReceivedFilename",
 								"value": {
 									"value": "@item().FileName",
 									"type": "Expression"
