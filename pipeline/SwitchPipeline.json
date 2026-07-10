@@ -1,0 +1,82 @@
+{
+	"name": "SwitchPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.FileType",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "CSV",
+							"activities": [
+								{
+									"name": "Wait5",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 5
+									}
+								}
+							]
+						},
+						{
+							"value": "JSON",
+							"activities": [
+								{
+									"name": "Wait6",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 6
+									}
+								}
+							]
+						},
+						{
+							"value": "EXCEL",
+							"activities": [
+								{
+									"name": "Wait9",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 9
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Fail",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "Not Supported file format",
+								"errorCode": "504"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"FileType": {
+				"type": "string",
+				"defaultValue": "CSV"
+			}
+		},
+		"annotations": []
+	}
+}
