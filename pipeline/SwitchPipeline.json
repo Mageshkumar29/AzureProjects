@@ -69,6 +69,22 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Wait10",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Switch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
 			}
 		],
 		"parameters": {
